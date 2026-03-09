@@ -49,8 +49,8 @@ Permite registrar, buscar, filtrar e devolver itens encontrados nas dependência
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/achados-e-perdidos.git
-cd achados-e-perdidos
+git clone https://github.com/seu-usuario/achados-e-perdidos-nest.git
+cd achados-e-perdidos-nest
 ```
 
 ### 2. Instalar dependências
