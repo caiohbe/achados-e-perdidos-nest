@@ -1,99 +1,305 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 📦 Achados e Perdidos — Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API REST para gerenciamento de itens achados e perdidos, desenvolvida para o SENAI.  
+Permite registrar, buscar, filtrar e devolver itens encontrados nas dependências da instituição.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+![NestJS](https://img.shields.io/badge/NestJS-10-E0234E?style=flat&logo=nestjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-6-2D3748?style=flat&logo=prisma&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8-4479A1?style=flat&logo=mysql&logoColor=white)
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Sumário
 
-## Project setup
+- [Stack](#stack)
+- [Pré-requisitos](#pré-requisitos)
+- [Instalação](#instalação)
+- [Endpoints](#endpoints)
+- [Exemplos de Uso](#exemplos-de-uso)
+- [Modelo de Dados](#modelo-de-dados)
+- [Scripts](#scripts)
+- [Variáveis de Ambiente](#variáveis-de-ambiente)
+- [Estrutura do Projeto](#estrutura-do-projeto)
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+## Stack
 
-```bash
-# development
-$ npm run start
+| Tecnologia      | Versão | Função                                       |
+| --------------- | ------ | -------------------------------------------- |
+| NestJS          | ^10    | Framework principal para a API REST          |
+| TypeScript      | ^5     | Tipagem estática em todo o projeto           |
+| Prisma ORM      | ^6     | Acesso ao banco com type-safety e migrations |
+| MySQL           | 8      | Banco de dados relacional                    |
+| class-validator | ^0.14  | Validação de DTOs via decorators             |
 
-# watch mode
-$ npm run start:dev
+---
 
-# production mode
-$ npm run start:prod
-```
+## Pré-requisitos
 
-## Run tests
+- [Node.js](https://nodejs.org/) v18 ou superior
+- npm v9 ou superior (incluso com o Node)
+- [MySQL 8](https://dev.mysql.com/downloads/) rodando localmente
 
-```bash
-# unit tests
-$ npm run test
+---
 
-# e2e tests
-$ npm run test:e2e
+## Instalação
 
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 1. Clonar o repositório
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+git clone https://github.com/seu-usuario/achados-e-perdidos.git
+cd achados-e-perdidos
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 2. Instalar dependências
 
-## Resources
+```bash
+npm install
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+### 3. Configurar variáveis de ambiente
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+cp .env.example .env
+```
 
-## Support
+Edite o `.env` com os dados do seu banco:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```env
+DATABASE_URL="mysql://root:sua_senha@localhost:3306/achados_e_perdidos"
+```
 
-## Stay in touch
+### 4. Criar o banco de dados
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```sql
+CREATE DATABASE achados_e_perdidos;
+```
 
-## License
+### 5. Gerar o Prisma Client
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+> ⚠️ Este passo é obrigatório antes de rodar migrations ou seed.
+
+```bash
+npx prisma generate
+```
+
+### 6. Executar as migrations
+
+```bash
+npx prisma migrate deploy
+```
+
+### 7. Popular o banco com dados iniciais
+
+```bash
+npx prisma db seed
+```
+
+> Insere 5 locais, 5 usuários e 27 itens de exemplo para desenvolvimento.
+
+### 8. Iniciar o servidor
+
+```bash
+# Desenvolvimento (com hot reload)
+npm run start:dev
+
+# Produção
+npm run build
+npm run start:prod
+```
+
+Servidor disponível em `http://localhost:3000`.
+
+---
+
+## Endpoints
+
+### Itens — `/items`
+
+| Método   | Rota         | Descrição               |
+| -------- | ------------ | ----------------------- |
+| `GET`    | `/items`     | Lista todos os itens    |
+| `GET`    | `/items/:id` | Retorna um item pelo ID |
+| `POST`   | `/items`     | Cadastra um novo item   |
+| `PATCH`  | `/items/:id` | Atualiza um item        |
+| `DELETE` | `/items/:id` | Remove um item          |
+
+**Query params disponíveis em `GET /items`:**
+
+| Param     | Tipo                | Descrição                                                            |
+| --------- | ------------------- | -------------------------------------------------------------------- |
+| `search`  | string              | Filtra por nome do item (startsWith)                                 |
+| `userId`  | number \| `"none"`  | Filtra por usuário que recebeu; `none` retorna apenas não devolvidos |
+| `localId` | number              | Filtra pelo local onde foi encontrado                                |
+| `date`    | string (YYYY-MM-DD) | Filtra pela data de encontro                                         |
+
+### Usuários — `/users`
+
+| Método   | Rota           | Descrição                                  |
+| -------- | -------------- | ------------------------------------------ |
+| `GET`    | `/users`       | Lista usuários. Aceita `?search=` por nome |
+| `GET`    | `/users/:name` | Busca usuário por nome                     |
+| `POST`   | `/users`       | Cadastra um novo usuário                   |
+| `PATCH`  | `/users/:id`   | Atualiza dados de um usuário               |
+| `DELETE` | `/users/:id`   | Remove um usuário                          |
+
+### Locais — `/locais`
+
+| Método   | Rota            | Descrição                                |
+| -------- | --------------- | ---------------------------------------- |
+| `GET`    | `/locais`       | Lista locais. Aceita `?search=` por nome |
+| `GET`    | `/locais/:nome` | Busca locais pelo nome                   |
+| `POST`   | `/locais`       | Cadastra um novo local                   |
+| `PATCH`  | `/locais/:id`   | Atualiza um local                        |
+| `DELETE` | `/locais/:id`   | Remove um local                          |
+
+---
+
+## Exemplos de Uso
+
+### Cadastrar um item
+
+```http
+POST /items
+Content-Type: application/json
+
+{
+  "item": "Guarda-chuva",
+  "descricao": "Preto com detalhes vermelhos",
+  "imagem_URL": "https://exemplo.com/imagem.png",
+  "data_encontrado": "2024-06-01",
+  "local_encontrado_id": 1
+}
+```
+
+### Registrar devolução
+
+```http
+PATCH /items/3
+Content-Type: application/json
+
+{
+  "usuario_devolvido_id": 2
+}
+```
+
+### Buscar com filtros
+
+```bash
+# Itens não devolvidos no local 2
+GET /items?userId=none&localId=2
+
+# Busca por nome
+GET /items?search=mochila
+```
+
+### Cadastrar usuário
+
+```http
+POST /users
+Content-Type: application/json
+
+{
+  "nome": "Ana Souza",
+  "cpf": "12345678900",
+  "email": "ana@exemplo.com"
+}
+```
+
+> O CPF é automaticamente sanitizado (aceita `123.456.789-00` ou `12345678900`).
+
+---
+
+## Modelo de Dados
+
+```
+Item
+├── id                   Int      (PK)
+├── item                 String   nome do objeto
+├── descricao            String
+├── imagem_URL           String?  (max 500 chars)
+├── data_encontrado      DateTime?
+├── local_encontrado_id  Int      (FK → LocaisSenai)
+└── usuario_devolvido_id Int?     (FK → User, null = não devolvido)
+
+User
+├── id    Int     (PK)
+├── nome  String
+├── cpf   String  (unique)
+└── email String  (unique)
+
+LocaisSenai
+├── id   Int    (PK)
+└── nome String (unique)
+```
+
+### Resposta de erro
+
+Todos os erros seguem o mesmo formato:
+
+```json
+{
+  "statusCode": 400,
+  "message": "Registro duplicado: cpf já cadastrado(s).",
+  "timestamp": "2024-06-01T12:00:00.000Z",
+  "path": "/users"
+}
+```
+
+---
+
+## Scripts
+
+| Comando                     | Descrição                           |
+| --------------------------- | ----------------------------------- |
+| `npm run start:dev`         | Desenvolvimento com hot reload      |
+| `npm run build`             | Compila TypeScript para `dist/`     |
+| `npm run start:prod`        | Inicia a versão compilada           |
+| `npm run test`              | Executa testes unitários            |
+| `npm run test:e2e`          | Executa testes end-to-end           |
+| `npx prisma generate`       | Gera o Prisma Client                |
+| `npx prisma migrate deploy` | Aplica migrations pendentes         |
+| `npx prisma db seed`        | Popula o banco com dados de exemplo |
+| `npx prisma studio`         | Interface visual para o banco       |
+
+---
+
+## Variáveis de Ambiente
+
+| Variável       | Obrigatória | Padrão | Descrição               |
+| -------------- | ----------- | ------ | ----------------------- |
+| `DATABASE_URL` | ✅          | —      | String de conexão MySQL |
+| `PORT`         | ❌          | `3000` | Porta do servidor       |
+
+---
+
+## Estrutura do Projeto
+
+```
+src/
+├── common/
+│   ├── errors/
+│   │   └── prisma-error.handler.ts   # Tratamento centralizado de erros Prisma
+│   └── filters/
+│       └── all-exceptions.filter.ts  # Filtro global de exceções HTTP
+├── items/
+│   ├── dto/                          # Validação de entrada (create + update)
+│   ├── entities/item.entity.ts
+│   ├── items.controller.ts           # Rotas HTTP
+│   ├── items.service.ts              # Lógica de negócio e filtros
+│   ├── items.repository.ts           # Queries Prisma
+│   └── items.module.ts
+├── users/                            # Mesma estrutura do módulo items
+├── locais/                           # Mesma estrutura do módulo items
+├── prisma/
+│   ├── prisma.service.ts
+│   └── prisma.module.ts
+└── main.ts
+
+prisma/
+├── schema.prisma                     # Modelos do banco
+├── seed.ts                           # Dados iniciais
+└── migrations/                       # Histórico de migrations
+```
